@@ -401,8 +401,8 @@ did.
 Below, we discuss a partial outline of a thesis focusing on
 standard chapters that are commonly found in a thesis.
 
-
-* Abstract
+* The Thesis 
+** Abstract
 The goal of the abstract is to give the reader an overview of the
 thesis -- enough information for her to decide whether she should
 continue reading. In just a couple of hundred words, you should
@@ -483,8 +483,7 @@ abstract /without looking at the old one/. Then compare the two
 versions and create a final one.
 #+END_important
 
-
-* Chapter 1: Introduction
+** Chapter 1: Introduction
 The goal of this chapter is to introduce the reader to your
 thesis. Start by connecting with something the reader already
 knows, e.g., "Because of ..., scaling by increasing the
@@ -513,7 +512,7 @@ thus perhaps not know the ideal way to introduce and motivate the
 work. From that perspective, it makes sense to wait with writing
 the introduction until the very last.
 
-** Purpose and Goals
+*** Purpose and Goals
 In this subsection, describe the /purpose/ and /goals/.
 
 It is easy to confuse purpose and goals. In the context of thesis
@@ -541,7 +540,7 @@ to answer:
 - What are the success criteria for this work?
 - How will the work be evaluated?
 
-** Delimitations
+*** Delimitations
 In this section, you can scale down some of the expectations and
 clarify statements made earlier. Some things warrant motivation
 and some not. For example, "Because we do not have reliable access
@@ -560,13 +559,13 @@ block where you live. Whether this will fly or not will ultimately
 come down to project specifics and the quality of the writing.].
 That's a classic bait-and-switch which is borderline illegal.
 
-* TODO Chapter 2: Background
+** TODO Chapter 2: Background
 - Have a specific background or spread it out
 - May be necessary to introduce certain things
 - From our running example, we might discuss prior work on
   simplifying parallel programming, or SOTA with e.g., threads
 
-* TODO Chapter 3: Methodology
+** TODO Chapter 3: Methodology
 - How to measure simplicity and scalability
 - Not just what you did but why and what the consequences are
 
@@ -574,7 +573,7 @@ You will undoubtedly have described your methodology in the
 specification. Different theses have different methods, and having
 a specific methodology chapter is usually a requirement. 
 
-** Example
+*** Example
 Let's say that your thesis is about extending the programming
 language Plaudits with Frobies. You simply don't "sit down and do
 that". You might start exploring the possible design space, maybe
@@ -629,7 +628,7 @@ but also to see that programs that do not use Frobies have been
 slowed-down in the extended system, etc. Now, we can also measure
 the technical debt due to our solution etc.
 
-** In Conclusion
+*** In Conclusion
 
 When we describe the method, the goal is to not just /explain/ the
 method of the thesis, but to also /motivate/ it, and what are the
@@ -647,14 +646,14 @@ late that you should have worked in a completely different way (or
 worse -- that you don't know exactly what you've done or why
 you've done it in that way!).
 
-* TODO Chapter X: Evaluation
+** TODO Chapter X: Evaluation
 - Don't make the reader do all the work
 - Have hypothesis, test them, state result clearly
 - Two lists are not a comparison
 - Be the first to criticise your own work
-* TODO Chapter Y: Future Work
+** TODO Chapter Y: Future Work
 - May be a section in a chapter, e.g,. in conclusions
-* TODO Chapter Z: Conclusions
+** TODO Chapter Z: Conclusions
 - Conclusions or concluding remarks
 - Critique
 - Discussion
@@ -768,3 +767,9 @@ When handing in a thesis draft, always:
 
 
 
+* LaTeX Template
+Work in progress. [[https://github.com/TobiasWrigstad/thesis-template][Download here]]. 
+
+The template uses only standard $\mathrm{\LaTeX}$ packages. If is
+does not work for you, then you should upgrade your installation.
+So far, the template has been tested on Ubuntu 18.04. 

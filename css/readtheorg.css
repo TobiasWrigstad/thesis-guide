@@ -825,7 +825,7 @@ hr{
 
 #table-of-contents h2{
     z-index:200;
-    background-color:#2980B9;
+    background-color: #6949B9;
     text-align:center;
     padding:0.809em;
     display:block;
@@ -1456,11 +1456,11 @@ div.pytutor-url {
 }
 
 button.btn-primary {
-    background-color: #2980B9;
+    background-color: #6949B9;
 }
 
 button.btn-primary:hover {
-    background-color: #1960a0;
+    background-color: #5939a9;
 }
 
 button.btn-right {
