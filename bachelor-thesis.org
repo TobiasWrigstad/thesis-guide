@@ -1,0 +1,629 @@
+#+title: Notes on Writing a Thesis
+#+INCLUDE: "setup.org"
+#+LANGUAGE: en
+
+# Changelog : 2016-feb started
+
+#+BEGIN_ABSTRACT
+This document contains notes with the intention of being
+instructive for a student writing a bachelor thesis or a master
+thesis. It suggests a plan-driven approach for structuring the
+thesis text, and discusses some frequently asked questions.
+Finally, it presents a thesis outline to use as a starting point,
+together with a discussion on what should be in each chapter.
+
+This is not a guide to writing a thesis /specification/. While
+many of the points below are useful for writing such a
+specification, it is mostly written assuming that the reader
+know what she is writing about, what her methods are, etc.
+#+END_ABSTRACT
+
+* Know Your Enemy
+If you are going to write a thesis, it makes sense to read a
+couple of theses to get a better understanding of what that entails.
+Ask your advisor to point you to theses close to your topic for
+maximal bang-for-buck, but also look at theses on other topics
+coming out of other groups. Looking at what others do might give
+you fresh ideas that may be applicable to your work.
+
+When reading these other theses, try not to focus on the result
+and the methodology, but rather how the work is described. Also
+criticise the theses! Could they have presented the work
+differently? Ask your advisor if she agrees with your opinions.
+
+* Making a Plan for Writing your Thesis
+Writing technical text is not easy, and as anything non-trivial it
+requires a plan. Approach the plan by starting with figuring out
+what it is that you want a reader to take away from having read
+your thesis. For example:
+
+#+BEGIN_QUOTE
+Frobies are a promising technique for parallel programming.
+#+END_QUOTE
+
+Or, a little bit better:
+
+#+BEGIN_QUOTE
+Frobies represent a point in the design space of parallel
+programming that balances simplicity and scalability such that
+many typical scenarios can be expressed straightforwardly, but
+still scale linearly as more CPUs are added.
+#+END_QUOTE
+
+"I want the reader to understand what I did" is not specific
+enough to be helpful. If you find you cannot quip a micro-summary
+of your conclusions, ask your advisor for help.
+
+Knowing what we want to have demonstrated is key to successfully
+demonstrating it. Of course, this is common sense[fn::However,
+common sense and common practise are commonly quite separated.],
+but unless you are an experienced writer, you mostly think about
+text from a consumer point of view. When all text is written, it
+is easy to get the idea that it magically sprung into existence in
+a way that inspired you to draw the intended conclusions from
+reading it.
+
+Note that the research question of your thesis might be different
+from this take-away point. Since more is sometimes, well, more,
+here is another example of a take-away point, in the form of a
+thesis statement:
+
+#+BEGIN_QUOTE
+Rust is a good system's programming language 
+#+END_QUOTE
+
+This is a pretty bad thesis statement. The word "good" is not
+clearly defined. Better unpack the statement a little to make it
+clearer:
+
+#+BEGIN_QUOTE
+Recreating the 63 most common errors in low-level C programs
+according to the the Common Weakness Enumeration shows that Rust
+is able to express 61 or them, yet avoid the errors in 29 of them.
+Completely forgoing aspects such as performance and tooling, this
+suggests that Rust is a good system's programming language.
+#+END_QUOTE
+
+Better? Better. Maybe a bit too much even, but the picture is
+clear. In a single paragraph, we were able to convey that Rust was
+almost as expressive as C, yet avoided almost half of the errors.
+That's /good/, no? But still, as the poet says, correctness is not
+all there is to it[fn::Whether the poet is correct or not I leave
+as an exercise to people at a higher pay grade.]. Hence, let's
+weaken our statement a bit by pointing out that the thesis does
+not consider tooling nor performance.
+
+By the way, the stuff on Rust above is completely made up. 
+
+Knowing -- /now/ -- what we want to have demonstrated, we can
+start reasoning backwards. We clearly have some experiments
+showing Frobies in action[fn::Otherwise, how could we substantiate
+our claims?], both from a simplicity point of view and from a
+scalability point of view. Where do these experiments belong in
+the story line? What must a reader know before she is able to
+fully appreciate the examples? Clearly something about
+simplicity[fn::And the same for scalability.] -- what it means,
+how it can be measured, what is the current state-of-the-art, etc.
+Does this belong in the same chapter as the examples, or maybe in
+a separate chapter? Maybe some of it goes in the background
+chapter? Etc. What is a design space[fn::Typically, by design
+space we mean the possible design choices that can be made in the
+design of something.]? What is parallel programming? Answering all
+those questions also require that you put some though into what
+needs explaining and can be assumed of a reader in /your target
+audience/? (You probably did a similar kind of plan for the work
+initially -- if you are doing the thesis plan before the work, you
+can let this plan influence the work plan.)
+
+By reasoning backwards, and also by looking at what you have done
+in your work that you want to report on, construct an /outline/
+for the thesis -- essentially a table of contents -- with just the
+chapter headings[fn::Remember that just because you did something
+during your work, it does not necessarily need to go into the
+thesis.]. For each chapter, write down /what is the goal/ of that
+chapter -- how does it contribute to telling the story that
+delivers the end result that we started by defining? Now switch to
+/testing/: when you look at all chapter goal statements, do they
+together tell the story or is something missing? If something is
+missing you either need more chapters, or you need to alter the
+goal statements.
+
+_Pro tip_: it is very easy at this stage to change the order of
+chapters to tell the story in a different way. Consider this
+always.
+
+Once you are satisfied with the outline at the chapter-level,
+repeat the same procedure for each chapter by adding a first level
+of section headings. Proceed in any order you like and create a
+more detailed outline for Chapter X that tells the story that
+Chapter X should tell. Test your work just as before. At this
+stage, you may realise that some sections should move to another
+chapter. If this is the case, think about how and if that alters
+the goal statement of that chapter.
+
+If you see the same section pop up in several chapters, it /may/ 
+(but not necessarily so) be an indication that your chapter-level
+outline is wrong. For example, if several chapters needs to
+discuss the topic T, it may be a good idea to extract those
+sections into a chapter solely on T. Since we are still dealing
+with an outline here, it is easy to test these things by creating
+an alternative outline and compare. Sometimes, distributing a
+topic across multiple sections is sensible, at other times it
+causes lots of repetition, or forces the reader to mentally bring
+the distributed sections together to understand something. 
+
+_Pro tip_: Most readers do not read a text in a linearly fashion,
+nor in one go. Write for those readers, not for the unicorns that
+do.
+
+You could stop this /work-breakdown structure/ after the first
+level of section headings, but it often makes sense to go deeper.
+In this case, flesh out each heading by making a bullet list of
+/both/ subsections and paragraphs.
+
+** Do Not Add Too Much Structure
+Avoid too many levels of subsections. Chapters, sections and
+subsections should work for most cases. Use additional levels very
+sparingly, and do not fall into the trap of thinking that you must
+then consistently use four levels of nesting everywhere, just
+because it is warranted in one or two places.
+
+If you use chapters or sections with parallel structure, e.g.,
+Chapters 2 and 3 both have subsections with identical names in the
+same order, make sure to point that out. Parallel structure is
+often a good thing when done right -- it makes it easy for the
+reader to e.g. relate similar aspects of two different things. 
+
+Style guides will tell you to not have a section with a single
+subsection. 
+
+** How Long Should My Thesis be?
+Your thesis should be as short as possible and at the same time as
+long as needed to tell the intended story in a way that is easily
+understandable. Strive to be clear and concise, but not at the
+cost of making the text hard to read or not
+self-contained[fn::Meaning the reader should not have to
+constantly look for information elsewhere to read your thesis.].
+Too terse writing makes text boring to read. Writing succinctly is
+a skill, and often takes longer time than writing verbosely, as
+more hinges on each word[fn::In honesty, this is why this text is
+so long.].
+
+_Pro tip:_ Use your plan to identify text that can be /cut/
+without impeding the thesis. If you find a paragraph that does not
+contribute to the goal of the enclosing section, it can probably
+be killed, or the section's goal need to be updated.
+
+** TODO Good Chapter and Section Headings
+- It must be clear what they are about
+- Introduction, Evaluation, Discussion are good because they are canon
+- Frobies is OK, Introducing Frobies is better
+- Avoid questions
+- Implementing the Design is a bad name
+- Don't continue the first line after the section heading as a continuation of that "sentence"
+
+* Miscellaneous Tips
+** Repeating Yourself
+When writing prose, you were probably told by countless teachers
+to vary your choice of words to avoid repetition. In prose, that
+is good advice, but in scholarly work, the opposite is rule:
+repeat yourself. This means using a consistent terminology. Using
+slightly different words for the same thing suggests that you have
+slightly different intention with the different uses.
+
+Furthermore, it is worth repeating key statements or key results
+across different chapters of a thesis to make each chapter more
+self-contained, and to make sure that key elements are not
+overlooked by the reader. Remember that a thesis is not written
+primarily for linear consumption. Someone who builds on your work
+is going to use your thesis as reference material, which means
+searching for facts/examples/etc. Others might go directly to your
+coverage of related work to read about the relationship between
+your work and that of Bobbins et al (1996). It may make sense to
+point out that you are repeating yourself to make that clear. For
+example, "Remember, as demonstrated in §3, that the use of
+unchecked Frobies are unsound."
+
+** Avoid Referring to a Section Heading
+It is bad practise, because it may not be clear what /it/ means
+(in this case, the first it refers to "Avoid Referring to a Section
+Heading"). Also, section headings have a tendency to change which
+can cause such references to accidentally become strange.
+
+"Avoiding to refer to a section heading is bad practise" would be
+a much better first sentence.
+
+** Unclear References
+While we are on the subject of references, unclear references is a
+common mistake in thesis text. As an example, try removing "of
+references" in the sentence just before. The writer knows what she
+means[fn::At least for a little while after she wrote it.], but
+the reader's mind may work differently. Or maybe the reader did
+not read "Avoid Referring to a Section Heading" just before, or
+maybe that entire section was scrapped, making it less clear that
+we are "on the subject of references". Spelling it out thus, makes
+your text more robust under change.
+
+Avoid unclear references like the plague. Even though it causes
+the word "references" to appear twice in close proximity, clarity
+is more important. A better way to write the former sentence is,
+again, to elaborate the "it", and write: "Even though writing out
+'of references' rather than just writing 'on the subject' causes
+the word 'references' to appear..."
+
+** Where Do References Go?
+This is a somewhat subtle topic. Consult your style guide for
+details. Nevertheless, I cannot constrain myself from the
+following example, which hopefully highlights that you must read
+your own sentences with an open mind to find how a reader might
+interpret your use of references:
+#+BEGIN_QUOTE
+Frobies [12] are a novel parallel programming construct.
+#+END_QUOTE
+The writing above suggests that [12] is a paper on Frobies.
+
+#+BEGIN_QUOTE
+Frobies are a novel parallel programming construct [12].
+#+END_QUOTE
+The writing above suggests that [12] argues that Frobies is a
+parallel programming construct, likely including its novelty.
+
+#+BEGIN_QUOTE
+Frobies are a novel parallel programming construct. [12]
+#+END_QUOTE
+The writing above suggests that the [12] belongs to the next sentence,
+and does it not seem odd to start a sentence with [12]?
+
+#+BEGIN_QUOTE
+Frobies are discussed in [12].
+#+END_QUOTE
+This is bad because you should not actively refer to things in
+brackets. If you cannot remove all references in a sentence
+without breaking it, the sentence is already broken, unless it is
+talking about references (several OK examples in this section).
+
+Here are some (good) alternatives to the last example:
+#+BEGIN_QUOTE
+Frobies are discussed in a paper by Bobbins et al. [12].
+
+A paper by Bobbins et al. [12] discusses Frobies.
+#+END_QUOTE
+
+Of course, if [12] is a paper by Woodruff claiming that "Frobies
+are discussed in a paper by Bobbins et al.", the 2nd last example,
+while technically correct, is misleading. The solution is
+rewriting to clarify:
+
+#+BEGIN_QUOTE
+According to Woodruff [12], Frobies are discussed in a paper by
+Bobbins et al.
+#+END_QUOTE
+
+** What is a Good Reference and Why Should You Care?
+While you can certainly reference anything, it is not clear that
+you should. Let us start by explaining why references are
+important -- for several reasons:
+
+1. You can use them to back up claims which you do not demonstrate
+   vacuously in your thesis. 
+2. By showing the presence of others who are doing work on related
+   things, you increase the importance of the work you are doing.
+3. By showing that you are aware of the prior work of others, and
+   also what work to point to and what work not to point to, you
+   establish confidence in the eyes of the reader.
+4. If you establish connections between your work and the work of
+   others, a reader that already knows the latter typically find
+   it easier to understand the former.
+5. They represent an easy way to connect your work to others so
+   that and interested reader can dig deeper.
+6. ... and more
+
+So, now that we know more about why references are good. Hopefully
+that helps in selecting references. Ideally, you already know the
+works of others so that inserting the refrence becomes a natural
+part of writing. Sometimes, that is not case though. For example,
+you may think you know something, but need to find some evidence
+to back it up.
+
+If you find a random blog post on Google, it /may/ be a good
+reference, but it also may not. A problem with references to
+mutable state is that the state may change "under foot". So you
+point to some URL, but the contents of that URL may change. If you
+are unlucky, it might even change to suddenly say the opposite of
+what it used to say when you used it as a reference.
+
+That is a reason why, in scholarly work, we prefer that you
+reference immutable sources, like a published paper. That is also
+the reason why it is important to be able to say the date of the
+publication of the reference, the edition of a book, etc. 
+
+Continuing with the example of the Woodruff paper above, if we
+have read in Woodruff's paper that Bobbins et al. make a certain
+claim, we should simply not say so. You should try your best to
+/find and read/ Bobbins et al.'s paper so that you can make sure
+that Woodruff accidentally did not mischaracterise Bobbins et
+al.'s work. Maybe there were nuances lost, or maybe Bobbins et al.
+say other things that are very useful to you. 
+
+*** But What About References to Wikipedia?
+For most things in Computer Science, for example, it is common to
+find great sources at Wikipedia. When you do, click on the
+footnotes that take you to the references and follow those links
+so that you can refer straight to the source, and not the
+Wikipedia aggregation. (This is not to say that Wikipedia is bad
+-- it is awesome -- but the closer we are to the actual claim, the
+better. However, if Wikipedia used claims of several references to
+create new knowledge, it would be the original source of that
+knowledge, and you can rightfully reference it. However, this is
+not how Encyclopaedia's work.)
+
+*** How do I Find the Right References?
+Usually by looking at the references of prior work. Ask your
+advisor for help with finding a few key references, and use a
+search engine like Google Scholar. Once you've found a few key
+references, you can probably find most of the sources you need
+though them. 
+
+Searching is *hard*. The key is finding the right words. You can
+be looking for existing work for many hours and come up empty
+until you figure out some special word that should be in the
+query, and suddenly dozens of paper appear. The key is to not give
+up, and be resourceful and try many different queries. If you
+search for many hours and don't find /anything/ close to what you
+are doing, you clearly haven't found the right phrases yet. 
+
+Start looking for the right literature *as early as possible*!
+Chanses are that someone else has already found out things that
+you can build on. Don't write text and then spend hours searching
+for papers that you can use to back up what you already wrote or
+did.
+
+-----
+
+Below, we discuss a partial outline of a thesis focusing on
+standard chapters that are commonly found in a thesis.
+
+* Abstract
+The goal of the abstract is to give the reader an overview of the
+thesis -- enough information for her to decide whether she should
+continue reading. In just a couple of hundred words, you should
+make it clear what the context is of the work, what motivates this
+work, what is the focus of the work of this thesis, how that work
+was carried out, and something about the key results[fn::Resist
+any urge to hold back on results -- a thesis is not a detective
+story! Rather, up-front understanding of the results is what might
+attract more readers.], and possibly what those key results
+mean in a larger context.
+
+There are several strategies for writing abstracts. One strategy
+that usually works well for a thesis starts by general statements
+about the state of the world, and gradually introduces
+increasingly specific things. Finally, when the level of detail is
+right, it explains what the thesis is really about, and then
+graually backs out to the state of the world again, and explains
+how the world has been affected by the thesis work. 
+
+Let's exemplify (not an actual abstract, but the individual steps):
+
+1. The world needs evermore powerful computers to satisfy its
+   increasing compute needs.
+2. Computers aren't getting faster because of the energy wall
+   and end of Dennard scaling. 
+3. The solution in the industry has been a move to multicore
+   machines, and computers now get increasing number of cores. 
+4. This however gives rise to another problem -- how to program
+   massively parallel machines. 
+5. A specific problem with parallel programming is to avoid 
+   data races and concurrency bugs. Programmers easily get stuck
+   dealing with concurrency bugs that are hard to reproduce. 
+6. This thesis introduces Frobies as a means to avoid data races.
+7. Frobies represent a point in the design space of parallel
+   programming that balances simplicity and scalability such that
+   many typical scenarios can be expressed straightforwardly, but
+   still scale linearly as more CPUs are added.
+8. Using Frobies, data races are no longer possible, without
+   sacrificing scalability. 
+9. Programmers can now use parallel programming to leverage the
+   power of the multicore computers, which allows us to deliver
+   the massive compute power that the world needs.
+
+Steps 1-5 are increasingly specific. 1 starts with a very general
+statement about the world, which should be a well-known fact, or
+be backed up by references or powerful (succinct!) argumentation.
+Step 5 arrives at the most specific statement in the problem
+introduction setting up for Step 6 to finally introduce what we
+are doing in the thesis. Steps 8 and 9 back out again,
+reconnecting with the initial sentence of the abstract.
+
+This is an example of a problem-driven argumentation which means
+we start by first establishing a problem and using this as the
+motivation for the work we are doing. An strength of this style is
+that the motivation is always clear, which helps the reader
+understand why she is reading about e.g. Frobies, and also follow
+the thought pattern of the writer, as the story unfolds. 
+
+On the opposite side is the solution-driven style which starts
+with the Frobies and their possibilities, and only later
+explaining some of their possible uses. 
+
+* Chapter 1: Introduction
+The goal of this chapter is to introduce the reader to your
+thesis. Start by connecting with something the reader already
+knows, e.g., "Because of ..., scaling by increasing the
+performance of a single CPU is no longer a viable option [Ref]."
+Then piecemeal move the focus closer to your work. (See text about
+the abstract above.)
+
+Don't write as if the reader just read the abstract -- if your
+thesis is about /Frobies/, which is a new concept, you cannot use
+it as if the reader should know what it is! (I consciously did
+just that in the introductory sections, with Frobies, to
+demonstrate it.) Just because it is obvious to you that your
+reader could not possibly be asked to understand what Frobies are,
+it will not be obvious to the reader unless you make it so. Thus,
+take care to introduce Frobies the first time you use it. If
+necessary, you can even introduce Frobies several times at
+increasing technical depth.
+
+It is not uncommon to start at the beginning, i.e., start the
+writing of a thesis by writing the introduction. That makes sense
+from the perspective that it is possible to start writing it
+before the work the thesis is reporting on is finished. On the
+other hand, it is common to "not fully understand" what it is you
+are doing/have accomplished, until the very end of the work, and
+thus perhaps not know the ideal way to introduce and motivate the
+work. From that perspective, it makes sense to wait with writing
+the introduction until the very last.
+
+** Purpose and Goals
+In this subsection, describe the /purpose/ and /goals/.
+
+It is easy to confuse purpose and goals. In the context of thesis
+writing, we usually use the former to talk about the "higher
+purpose", i.e., some slightly grander scheme of things that your
+thesis plays a part in. With the latter, we usually mean exactly
+what you set out to accomplish in your thesis. Thus, the purpose
+helps the reader understand /why/ you are doing something, and the
+goal will set the expectations for /what/ is accomplished in your
+work. It is common to describe the purpose as part of the text
+leading up to a Goals subsection.
+
+/Setting the correct expectations is important./ If you claim to
+rid the world of poverty, then you'll get lots of interested
+readers, which you will most certainly dissapoint. However, if you
+understate your claims, no one is going to read the thing, so you
+could as well not write it in the first place.
+
+Having read this section, the reader should have gotten a good
+understanding of what you have achieved that you are reporting on
+in your thesis. Key questions that the reader expects to be able
+to answer:
+
+- What can I expect to learn if I keep reading?
+- What are the success criteria for this work?
+- How will the work be evaluated?
+
+** Delimitations
+In this section, you can scale down some of the expectations and
+clarify statements made earlier. Some things warrant motivation
+and some not. For example, "Because we do not have reliable access
+to a machine with a Frobie chipset, all experiments are run inside
+a simulator." Avoid motivations that suggest that you should not
+have done this work in the first place, or circumstances that
+could not be changed, like the duration of the project.
+
+Scaling down expectations also should be done with care. For
+example, if your goal is to rid the world of poverty, then you
+cannot delimit yourself to just "the block where I live" much
+later in the thesis[fn::However, ridding the world of poverty
+could conceivably be a good /higher purpose/, with a specific
+/goal/ for the thesis to try out some specific technique on the
+block where you live. Whether this will fly or not will ultimately
+come down to project specifics and the quality of the writing.].
+That's a classic bait-and-switch which is borderline illegal.
+
+* TODO Chapter 2: Background
+- Have a specific background or spread it out
+- May be necessary to introduce certain things
+- From our running example, we might discuss prior work on
+  simplifying parallel programming, or SOTA with e.g., threads
+
+* TODO Chapter 3: Methodology
+- How to measure simplicity and scalability
+- Not just what you did but why and what the consequences are
+
+You will undoubtedly have described your methodology in the
+specification. Different theses have different methods, and having
+a specific methodology chapter is usually a requirement. 
+
+** Example
+Let's say that your thesis is about extending the programming
+language Plaudits with Frobies. You simply don't "sit down and do
+that". You might start exploring the possible design space, maybe
+outline a few different possible implementations, and use some
+form of analysis and/or experimentation for choosing a particular
+implementation. Or maybe you pick several and do a full
+implementation and then evaluate. 
+
+*To explore the design space*, you study the literature on Frobies
+to see what have previous implementations done, or how do
+implementations of Frobies-like constructs look like? You might
+categorise different aspects of the design, e.g., "push as much as
+possible to compile-time", "do everything at run-time" and "hybrid
+of run-time and compile-time". That's probably only one dimension,
+and you will probably end up with many -- that will allow you to
+construct a nice table that clearly shows how the different
+possibilities are different or similar, and maybe you will see
+that there is no implementation that ticks some particular
+combination of boxes[fn::Maybe for a good reason, or maybe this
+means there is space to innovate.]. 
+
+*To choose between the different implementation strategies*, you
+will first need to pick the evaluation criteria. Let's say that we
+want to balance performance with the invasiveness in the compiler
+and run-time. There will likely not be any hard science for making
+this decision based on such criteria (at least not unless we are
+comparing full implementations), but if there were, we would
+describe how to quantify performance and invasiveness and some
+formula (say) that takes both these as input and produces a number
+that we can use to rank the possible solutions. In lieu of such a
+scientific method, we would try to make the best qualitative
+analysis of invasiveness following some criteria, like how
+cross-cutting is the various implementations, and can we reuse
+existing components in the Plaudits compiler/run-time, etc. The
+key to all of this is to think before acting, and always make
+informed and well-motivated choices.
+
+For example, we can use the table of different Frobies
+implementation we talked about constructing to drive the analysis.
+If we know the performance (or other aspects) of the different
+implementations, we may even see patterns, e.g. that solutions
+that push everything into run-time usually do a better job for
+higher core counts, but a worse job for lower core counts. This
+could motivate a choice of a hybrid solution for Frobies, that use
+a combination of the two.
+
+*For evaluating what we accomplished in the end*, we might use a
+similar method as when picking the implementation technique. In
+this case, we (probably) have the full system so we can do some
+real benchmarking, both to gauge the performance of our Frobies,
+but also to see that programs that do not use Frobies have been
+slowed-down in the extended system, etc. Now, we can also measure
+the technical debt due to our solution etc.
+
+** In Conclusion
+
+When we describe the method, the goal is to not just /explain/ the
+method of the thesis, but to also /motivate/ it, and what are the
+/consequences/ of these choices. This means not just listing what
+you did, but exploring what you could have done, and why you made
+your particular choices, and how that affects the result. In the
+end, you will want to criticise your own work and describe the
+threats to validity. If this is the first time you think about
+your method, you may be conclude -- and thus be compelled to write
+-- that your work is hogwash, or that you might not have
+accomplished much. Think of the methodology design (which you
+report on in the methodology section) as a way to test-run your
+thesis work beforehand, to minimise the risk of you realising too
+late that you should have worked in a completely different way (or
+worse -- that you don't know exactly what you've done or why
+you've done it in that way!).
+
+
+* TODO Chapter X: Evaluation
+- Don't make the reader do all the work
+- Have hypothesis, test them, state result clearly
+- Two lists are not a comparison
+- Be the first to criticise your own work
+* TODO Chapter Y: Future Work
+- May be a section in a chapter, e.g,. in conclusions
+* TODO Chapter Z: Conclusions
+- Conclusions or concluding remarks
+- Critique
+- Discussion
+- Don't make the reader do all the work
+
+
+#+INCLUDE: "footer.org"
+
+
