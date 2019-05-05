@@ -16,7 +16,13 @@ This is not a guide to writing a thesis /specification/. While
 many of the points below are useful for writing such a
 specification, it is mostly written assuming that the reader
 know what she is writing about, what her methods are, etc.
+
 #+END_ABSTRACT
+
+*Authors*: [[http://Wrigstad.com][Tobias Wrigstad]]
+
+Suggestions more that welcome. Feel free to [[https://github.com/TobiasWrigstad/thesis-guide][make a pull request]],
+or just [[mailto:thesis-guide@wrigstad.com][send an email]]. 
 
 * Know Your Enemy
 If you are going to write a thesis, it makes sense to read a
@@ -128,9 +134,11 @@ together tell the story or is something missing? If something is
 missing you either need more chapters, or you need to alter the
 goal statements.
 
-_Pro tip_: it is very easy at this stage to change the order of
+#+BEGIN_tip
+It is very easy at this stage to change the order of
 chapters to tell the story in a different way. Consider this
 always.
+#+END_tip
 
 Once you are satisfied with the outline at the chapter-level,
 repeat the same procedure for each chapter by adding a first level
@@ -152,14 +160,22 @@ topic across multiple sections is sensible, at other times it
 causes lots of repetition, or forces the reader to mentally bring
 the distributed sections together to understand something. 
 
-_Pro tip_: Most readers do not read a text in a linearly fashion,
-nor in one go. Write for those readers, not for the unicorns that
-do.
+#+BEGIN_tip
+Most readers do not read a text in a linearly fashion, nor in one
+go. Write for those readers, not for the unicorns that do.
+#+END_tip
 
 You could stop this /work-breakdown structure/ after the first
 level of section headings, but it often makes sense to go deeper.
 In this case, flesh out each heading by making a bullet list of
 /both/ subsections and paragraphs.
+
+#+BEGIN_tip
+There is usually no good reason to write the thesis
+linearly from start to finish. Start with the most important parts
+and flesh those out. Also, no need to finish a specific chapter
+before moving on to the next. 
+#+END_tip
 
 ** Do Not Add Too Much Structure
 Avoid too many levels of subsections. Chapters, sections and
@@ -189,10 +205,12 @@ a skill, and often takes longer time than writing verbosely, as
 more hinges on each word[fn::In honesty, this is why this text is
 so long.].
 
-_Pro tip:_ Use your plan to identify text that can be /cut/
+#+BEGIN_tip
+Use your plan to identify text that can be /cut/
 without impeding the thesis. If you find a paragraph that does not
 contribute to the goal of the enclosing section, it can probably
 be killed, or the section's goal need to be updated.
+#+END_tip
 
 ** TODO Good Chapter and Section Headings
 - It must be clear what they are about
@@ -383,6 +401,7 @@ did.
 Below, we discuss a partial outline of a thesis focusing on
 standard chapters that are commonly found in a thesis.
 
+
 * Abstract
 The goal of the abstract is to give the reader an overview of the
 thesis -- enough information for her to decide whether she should
@@ -445,6 +464,25 @@ the thought pattern of the writer, as the story unfolds.
 On the opposite side is the solution-driven style which starts
 with the Frobies and their possibilities, and only later
 explaining some of their possible uses. 
+
+#+BEGIN_important
+*When to write the abstract* 
+
+Some people advocate for writing the abstract last. I would
+sugguest writing the abstract *both first and last*. The reason
+for writing it first is because it forces you to think concretely
+what your thesis is about, and how it connects to the rest of the
+world. It thus serves as a forcing function for thinking about
+these things. 
+
+The reason for writing the abstract last is because only then will
+you truly know (understand!) what you actually accomplished, and
+thus probably better how to present it to your intended audience.
+Thus, once you are done with your thesis, write yourself a new
+abstract /without looking at the old one/. Then compare the two
+versions and create a final one.
+#+END_important
+
 
 * Chapter 1: Introduction
 The goal of this chapter is to introduce the reader to your
@@ -609,7 +647,6 @@ late that you should have worked in a completely different way (or
 worse -- that you don't know exactly what you've done or why
 you've done it in that way!).
 
-
 * TODO Chapter X: Evaluation
 - Don't make the reader do all the work
 - Have hypothesis, test them, state result clearly
@@ -623,7 +660,111 @@ you've done it in that way!).
 - Discussion
 - Don't make the reader do all the work
 
+* Process and Tooling Guidelines
+Below, I have gathered some guidelines which are releted to the
+writing process, but are not necessarily related to the writing
+itself.
+
+** Use Version Control
+As you are going to be writing on your thesis for a couple of
+months, you should definitely use version control. 
+
+On day 1 of your thesis work, create a repo somewhere and share
+that repo with your advisor with push rights. Below, I am going to
+assume that you use Git and e.g. GitHub. It may be a good idea to
+separate the repos for the artefact you are doing and the thesis.
+For example, if you are going to make your artefact public after
+the thesis work, you may not want to make all the history of your
+thesis drafts and comments public.
+
+** Showing Drafts to Your Advisor and Reviewer
+*** How to Hand in a _First_ Draft of Your Thesis
+When handing in your thesis to your advisor, think of it as a
+"release". We are going to want to revert back to this initial
+release later, to highlight what has changed in response to the
+advisor's comments. Thus, we want to *tag* the release. If you use
+Git, here is how you tag your release. First make sure you are
+fully checked in, and have compiled your thesis into e.g.
+=main.pdf=. Then do the following:
+
+#+BEGIN_EXAMPLE
+$ git tag draft_1
+$ git push --tags 
+#+END_EXAMPLE
+
+The first command associates the tag =draft_1= with the
+current commit, and the second pushes the tag to the remote repo,
+e.g. GitHub. 
+
+*** How to Hand in a _Subsequent_ Draft of Your Thesis
+Whenever you are handing in a subseqeuent draft, we want to use a
+special tool called =latexdiff= that annotates the PDF file with
+information that highlights what has changed. This requires two
+files -- the version you are going to hand in (which I will call
+=main.tex= below) and the previous version (which I will call
+=prev.tex=). Given these files, we can generate a third file
+=diff.tex= using the =latexdiff= command, and then compile this
+file into a PDF:
+
+<<latexdiff>>
+#+BEGIN_EXAMPLE
+$ latexdiff prev.tex main.tex > diff.tex
+$ pdflatex diff.tex 
+#+END_EXAMPLE
+
+This is where the tagging shines. Simply do =git checkout
+draft_1= to go back in time to the first draft, then copy
+=main.tex= into =prev.tex=. Then get back to the current state by
+=git checkout master= and now we are ready to do the commands
+above. 
+
+Once we are done, we should also create a new tag for the current
+"release", e.g. =git tag draft_2= etc. 
+
+#+BEGIN_important
+The =latexdiff= command is *great* but it is also quite likely to
+generate completely broken source files. Be prepared to have to
+spend some time to make your =diff.tex= file to compile without
+errors. You'll likely see errors around source code (where diff
+codes are inserted but not interpreted since we are escaped out of
+normal $\mathrm{\LaTeX}$ mode), and in headings (where diff codes often
+seem to break), etc. Don't simply press return to brute force the
+compiler to generate a PDF for these files! The annotated PDF file
+is a *huge time saver* for the reviewer who is likely too pressed
+for time to ocularly check that all the requested changes have
+been implemented. 
+#+END_important
+
+*** Asking for Feedback
+Even if you "know" your reviewer or advisor from before, you may
+not know her in this capacity. It is good to hand in a draft
+early, even for just some tiny fraction of your thesis, to learn
+how to interact with the other person, and learn to intepret her
+way of giving feedback. 
+
+When handing in a thesis draft, always:
+
+1. *Explain clearly what you want out of feedback cycle* -- for
+   example, clearly denote (preferably in the PDF) what sections
+   are considered work-in-progress, what sections are considered
+   finished, etc. Your revewier has limited time, so use it wisely
+   -- if you are interested in /high-level feedback on your method
+   chapter/ (i.e., the contents but not necessarily the speling),
+   say so. If you just hand your reviewer a PDF, expect to not get
+   much bang for your buck /and/ waste your reviewer's time.
+2. *Explain clearly what has changed since last time* -- in
+   addition to [[latexdiff][handing in a =latexdiff='d file]], give a high-level
+   explanation of what you have done since last time. It may well
+   be the case that your reviewer haven't had the time to think
+   about your work for a long time, so anything to help her to get
+   up to speed quickly will work in your favour.
+3. *Ask for a rough indication of when you can expect your
+   comments* -- and if there is a lot for the reviewer to do,
+   state your priorities so that she can focus on the most
+   important thing first.
+
 
 #+INCLUDE: "footer.org"
+
 
 
