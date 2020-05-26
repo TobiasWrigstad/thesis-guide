@@ -93,7 +93,7 @@
 
 (setq org-publish-project-alist
       '(("root"
-         :base-directory "/home/stw/t/thesis-guide/"
+         :base-directory "/home/stw/work/thesis-guide/"
          :base-extension "org"
          :exclude "setup.org\\|footer.org\\|readme.org"
          ;; :publishing-directory "/tmp/ioopm18/"
@@ -118,20 +118,20 @@
          :publishing-function org-publish-attachment)
 
         ("css"
-         :base-directory "/home/stw/t/thesis-guide/css/"
+         :base-directory "/home/stw/work/thesis-guide/css/"
          :base-extension "css"
          ;; :publishing-directory "/tmp/ioopm18/css/"
          :publishing-directory "/ssh:tobias@wrigstad.com:~/domains/wrigstad.com/www/thesis-guide/css/"
          :publishing-function org-publish-attachment)
 
         ("fonts"
-         :base-directory "/home/stw/t/thesis-guide/css/fonts/"
+         :base-directory "/home/stw/work/thesis-guide/css/fonts/"
          :base-extension "ttf"
          :publishing-directory "/ssh:tobias@wrigstad.com:~/domains/wrigstad.com/www/thesis-guide/css/fonts"
          :publishing-function org-publish-attachment)
 
         ("js"
-         :base-directory "/home/stw/t/thesis-guide/js/"
+         :base-directory "/home/stw/work/thesis-guide/js/"
          :base-extension "js"
          ;; :publishing-directory "/tmp/ioopm18/js/"
          :publishing-directory "/ssh:tobias@wrigstad.com:~/domains/wrigstad.com/www/thesis-guide/js/"
