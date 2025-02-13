@@ -380,7 +380,10 @@ Usually by looking at the references of prior work. Ask your
 advisor for help with finding a few key references, and use a
 search engine like Google Scholar. Once you've found a few key
 references, you can probably find most of the sources you need
-though them. 
+though them. Starting from a reference, you can search forward 
+and backwards in time: look at the references that are cited
+in a paper, and also look for papers that cite your reference 
+(e.g. using Google Scholar's "Cited by" link). 
 
 Searching is *hard*. The key is finding the right words. You can
 be looking for existing work for many hours and come up empty
@@ -803,3 +806,26 @@ Work in progress. [[https://github.com/TobiasWrigstad/thesis-template][Download 
 The template uses only standard $\mathrm{\LaTeX}$ packages. If is
 does not work for you, then you should upgrade your installation.
 So far, the template has been tested on Ubuntu 18.04. 
+
+** LaTeX Tips
+General:
+- One sentence per line or limit line length: Makes it easier to follow changes in diff, and to find Latex bugs.
+- Use empty lines for paragraph breaks instead of '\\\\': Makes the paragraphs visible in the source too.
+- Use a spell-checker. Many editors will have one built-in, so enable it: Saves your and your co-authors time fixing typos.
+
+Citations:
+- Use the hyperref or cleverref packages for citations, they will automatically add the correct prefix (e.g. /Section/ 1, /Figure/ 2, ...), and the prefix will also be part of the clickable reference, not only the number. 
+- Use a tilde before cite and autoref/cref commands: ~\cite{}: The tilde ~ is an unbreakable space, i.e. the line will never be broken at this position.
+- Try to keep references consistent from the beginning or at least clean them up before submission. For instance, copying bibtex entries from [[https://dblp.org/][DBLP]] will give you consistent formatting; you can remove some less relevant information such as editor names, but keep the paper's DOI.
+
+Math:
+- Use \(...\) to write inline equations: `$...$` is a TeX command and gives more obscure error messages.
+- Use \begin{equation*} or \begin{align*} to write centered equations: `$$...$$` gives wrong spacing.
+- [[http://tug.ctan.org/info/short-math-guide/short-math-guide.pdf][Short Math Guide for Latex]]: Quick reference for math equations
+- [[https://detexify.kirelabs.org/classify.html][Detexify]]: Draw the symbol you want, and the tool returns a list of possible Latex commands.
+
+Tables and floats:
+- [[https://people.inf.ethz.ch/markusp/teaching/guides/guide-tables.pdf][Small Guide to Making Nice Tables]]: Must read before making LaTeX tables.
+- [[https://www.tablesgenerator.com/latex_tables][Latex Tables Generator]]: Useful for generating tables with merged cells (going over several rows/columns).
+- Place floats at the top of the page ([t]). This does not break up the text. 
+- If you have trouble placing floats where you want them, it is helpful to know [[https://www.tug.org/TUGboat/tb35-3/tb111mitt-float.pdf][Latex' algorithm]] for placing them. In short, Latex will attempt to place a float as soon as it encounters it in the source. If the current page is already too full, the float moves to the next page.
